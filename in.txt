@@ -1,0 +1,32 @@
+P
+Jim Robinson
+jim@rds.ie
+087 9999999
+9877
+C++, RPG and Cobol
+100000.00
+1
+P
+Mary Robinson
+mary@rds.ie
+087 123123
+9876
+C++, Java and Everthing OO
+700000.00
+1
+P
+Jim Bob Junior
+jimJun@rds.ie
+085 123123
+9875
+C++, RPG and Cobol
+30000.00
+1
+P
+Patsy Jordan
+patsy@gmail.com
+087 444555
+9874
+Ruby, C# and PHP
+20000.00
+1

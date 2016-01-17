@@ -1,5 +1,7 @@
 package CA1V0;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -30,7 +32,8 @@ public class CA1V0 {
             System.out.println("2 - View current Bus list");
             System.out.println("3 - Delete from Bus list");
             System.out.println("4 - Update an item in bus list");
-            System.out.println("5 - Exit");
+            System.out.println("5 - File Input");
+            System.out.println("6 - Exit");
             System.out.println("-----------------------------------------------------\n");
             System.out.println("What would you like to do?");
             menuOpt = in.nextInt();
@@ -70,12 +73,17 @@ public class CA1V0 {
                 }
 
                 case 5: {
+                    System.out.println("File Input....");
+                    readBusFile(in, model);
+                    break;
+                }
+                case 6: {
                     System.out.println("Exiting....");
                     break;
                 }
             }
-            //Ends the loop when 5
-        } while (menuOpt != 5);
+            //Ends the loop when 6
+        } while (menuOpt != 6);
     }
 
     private static String getString(Scanner in, String a) {
@@ -83,6 +91,63 @@ public class CA1V0 {
         return in.nextLine();
     }
 
+       public static void readBusFile(Scanner kb, TestModel m) {
+      
+      System.out.println("Enter file:");
+      kb.nextLine();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      String inputFileName = kb.nextLine();
+      File inputFile = new File(inputFileName);
+      try{
+        Scanner in = new Scanner(inputFile);
+        while (in.hasNextLine())
+        {
+            String line = in.nextLine();
+            if(line.equalsIgnoreCase("B"))
+            {
+                readBus(in );
+            }
+        //else
+           //  createManager();
+        }
+          in.close();
+    
+
+       
+      }
+      catch (FileNotFoundException ex)
+      {
+          System.out.println("Cannot find file");
+          
+      }
+      
+     
+    
+        
+    }
+       
+     public static void createBus(Scanner in, TestModel model){
+
+        String r = in.nextLine();
+        String mk = in.nextLine();
+        String md = in.nextLine();
+        int c = in.nextInt();
+        String x = in.nextLine();
+        Double engn = in.nextDouble();
+        x = in.nextLine();
+        String pd = in.nextLine();
+        String sd = in.nextLine();
+        x = in.nextLine();
+        int gid = in.nextInt();
+        x = in.nextLine();
+        boolean wf = in.nextBoolean();
+        boolean t = in.nextBoolean();     
+          Bus b
+                = new Bus(r,mk,md,c,engn,pd,sd,gid);
+        model.addBus(b);
+        
+    }
+    
+    
     private static Bus readBus(Scanner in) {
         int busId;
         String reg;
