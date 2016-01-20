@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CA1V0 {
 
@@ -106,8 +108,7 @@ public class CA1V0 {
             {
                 readBus(in );
             }
-        //else
-           //  createManager();
+      
         }
           in.close();
     
@@ -136,13 +137,23 @@ public class CA1V0 {
         x = in.nextLine();
         String pd = in.nextLine();
         String sd = in.nextLine();
-        x = in.nextLine();
+        
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date purDate = null;
+        Date serviceDate = null;
+        
+        try {
+            purDate = df.parse(pd);
+            serviceDate = df.parse(sd);
+        } catch (ParseException ex) {
+            Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int gid = in.nextInt();
         x = in.nextLine();
         boolean wf = in.nextBoolean();
         boolean t = in.nextBoolean();     
           Bus b
-                = new Bus(r,mk,md,c,engn,pd,sd,gid);
+                = new Bus(r,mk,md,c,engn,purDate,serviceDate,gid);
         model.addBus(b);
         
     }
@@ -241,7 +252,7 @@ public class CA1V0 {
         esupdate = getString(in, "Enter Engine Size: [" + b.getEngineSize() + "]:");
         gidupdate = getString(in, "Enter Garage ID: [" + b.getgarageId() + "]:");
         if (sdupdate.length() != 0) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD");
             String newsdate = sdupdate;
             
             try {
