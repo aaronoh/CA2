@@ -93,55 +93,47 @@ public class CA1V0 {
         return in.nextLine();
     }
 
-       public static void readBusFile(Scanner kb, TestModel m) {
-      
-      System.out.println("Enter file:");
-      kb.nextLine();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      String inputFileName = kb.nextLine();
-      File inputFile = new File(inputFileName);
-      try{
-        Scanner in = new Scanner(inputFile);
-        while (in.hasNextLine())
-        {
-            String line = in.nextLine();
-            if(line.equalsIgnoreCase("B"))
-            {
-                readBus(in );
-            }
-      
-        }
-          in.close();
-    
+    public static void readBusFile(Scanner kb, TestModel m) {
 
-       
-      }
-      catch (FileNotFoundException ex)
-      {
-          System.out.println("Cannot find file");
-          
-      }
-      
-     
-    
-        
+        System.out.println("Enter file:");
+        kb.nextLine();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        String inputFileName = kb.nextLine();
+        File inputFile = new File(inputFileName);
+        try {
+            Scanner in = new Scanner(inputFile);
+            while (in.hasNextLine()) {
+                String line = in.nextLine();
+                if (line.equalsIgnoreCase("B")) {
+                    createBus(in, m);
+                }
+
+            }
+            in.close();
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Cannot find file");
+
+        }
+
     }
-       
-     public static void createBus(Scanner in, TestModel model){
+
+    public static void createBus(Scanner in, TestModel model) {
 
         String r = in.nextLine();
         String mk = in.nextLine();
         String md = in.nextLine();
+//        String x = in.nextLine();
         int c = in.nextInt();
-        String x = in.nextLine();
+//        x = in.nextLine();
         Double engn = in.nextDouble();
-        x = in.nextLine();
+        String x = in.nextLine();
         String pd = in.nextLine();
         String sd = in.nextLine();
-        
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date purDate = null;
         Date serviceDate = null;
-        
+
         try {
             purDate = df.parse(pd);
             serviceDate = df.parse(sd);
@@ -149,16 +141,15 @@ public class CA1V0 {
             Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
         }
         int gid = in.nextInt();
-        x = in.nextLine();
+//        x = in.nextLine();
         boolean wf = in.nextBoolean();
-        boolean t = in.nextBoolean();     
-          Bus b
-                = new Bus(r,mk,md,c,engn,purDate,serviceDate,gid);
+        boolean t = in.nextBoolean();
+
+        Bus b = new Bus(r, mk, md, c, engn, purDate, serviceDate, gid);
         model.addBus(b);
-        
+
     }
-    
-    
+
     private static Bus readBus(Scanner in) {
         int busId;
         String reg;
@@ -171,7 +162,6 @@ public class CA1V0 {
         int garageId;
 
         //User input for adding bus to bus object
-        
         try {
             System.out.println("Enter purchase date (YYYY-MM-DD): ");
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -254,7 +244,7 @@ public class CA1V0 {
         if (sdupdate.length() != 0) {
             SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD");
             String newsdate = sdupdate;
-            
+
             try {
 
                 Date date = df.parse(newsdate);

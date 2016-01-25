@@ -49,6 +49,11 @@ public class TestModel {
 
     public void addBus(Bus b) {
         this.buses.add(b);
+        try {
+            busTableGateway.insertBus(b);//inserts bus into db
+        }catch (SQLException e) {
+            System.err.println("ERROR " + e.getMessage());//informs user if SQL error occurs
+        }
     }
 
     public boolean removeBus(Bus b) {
