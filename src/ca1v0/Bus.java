@@ -72,11 +72,17 @@ public class Bus extends Vehicles {
         this.garageId = garageId;
     }
 
-    public String rowToString() {
+ public String rowToString() {
         //method used to present data stored in array list (populated by db) in view method 
         return  "\n***********************************\n"
                 + "*  Bus ID: " + this.getbusId() 
                 + "\n*  Registration: " + this.getReg()
+                + "\n*  Make: " + this.getMake()
+                + "\n*  Model: " + this.getModel()
+                + "\n*  Capacity: " + this.getCapacity()
+                + "\n*  Engine Size: " + this.getEngineSize()
+                + "\n*  Purchase Date: " + this.getPurchaseDate()
+                + "\n*  Service Date: " + this.getServiceDate()
                 + "\n*  Garage ID: " + this.getgarageId()
                 +"\n***********************************\n";
     }
