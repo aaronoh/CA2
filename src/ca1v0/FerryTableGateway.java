@@ -79,60 +79,63 @@ public class FerryTableGateway {
         return ferries; //returns arraylist of all buses in table
     }
 
-//    public boolean insertBus(Bus buses) throws SQLException {
-//
-//        String query; // the SQL query to execute
-//        PreparedStatement stmnt; // the java object used to execute SQL query
-//
-//        int numRowsAffected;
-//        int id;
-//        boolean success = true;
-//
-//        //  SQL INSERT statement 
-//        query = "INSERT INTO " + TABLE_NAME + " ("
-//                + COLUMN_REG + ", "
-//                + COLUMN_MAKE + ", "
-//                + COLUMN_MODEL + ", "
-//                + COLUMN_CAPACITY + ", "
-//                + COLUMN_ENGINESIZE + ", "
-//                + COLUMN_PURCHASEDATE + ", "
-//                + COLUMN_SERVICEDATE + ", "
-//                + COLUMN_GARAGEID
-//                + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//
-//        // create a PreparedStatement object to execute the query
-//        try {
-//            stmnt = newConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);//connect to db
-//            stmnt.setString(1, buses.getReg());//assigns each variable in the bus object to a collumn in the db
-//            stmnt.setString(2, buses.getMake());
-//            stmnt.setString(3, buses.getModel());
-//            stmnt.setInt(4, buses.getCapacity());
-//            stmnt.setDouble(5, buses.getEngineSize());
-//            stmnt.setDate(6, new Date(buses.getPurchaseDate().getTime()));
-//            stmnt.setDate(7, new Date(buses.getServiceDate().getTime()));
-//            stmnt.setInt(8, buses.getgarageId());
-//
-//            //  execute the query and make sure only one row was inserted 
-//            numRowsAffected = stmnt.executeUpdate();
-//            if (numRowsAffected == 1) {
-//                //Retrieve id assigned to that row and create a Bus object 
-//                ResultSet keys = stmnt.getGeneratedKeys();
-//                keys.next();
-//
-//                id = keys.getInt(1);
-//
-//                buses.setBusId(id);
-//            } else {
-//                System.err.println("No rows were changed");
-//                success = false;
-//            }
-//
-//        } catch (SQLException e) {
-//            System.err.println(e.getMessage());
-//            success = false;
-//        }
-//        return success;
-//    }
+    public boolean insertFerry(Ferry ferries) throws SQLException {
+
+        String query; // the SQL query to execute
+        PreparedStatement stmnt; // the java object used to execute SQL query
+
+        int numRowsAffected;
+        int id;
+        boolean success = true;
+
+        //  SQL INSERT statement 
+        query = "INSERT INTO " + TABLE_NAME + " ("
+                + COLUMN_MAKE + ", "
+                + COLUMN_MODEL + ", "
+                + COLUMN_CAPACITY + ", "
+                + COLUMN_ENGINESIZE + ", "
+                + COLUMN_PURCHASEDATE + ", "
+                + COLUMN_SERVICEDATE + ", "
+                + COLUMN_CABINS + ","
+                + COLUMN_CREWMEMBERS + ", "
+                + COLUMN_NAME 
+                
+                + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        // create a PreparedStatement object to execute the query
+        try {
+            stmnt = newConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);//connect to db
+            stmnt.setString(1, ferries.getMake());//assigns each variable in the bus object to a collumn in the db
+            stmnt.setString(2, ferries.getModel());
+            stmnt.setInt(3, ferries.getCapacity());
+            stmnt.setDouble(4, ferries.getEngineSize());
+            stmnt.setDate(5, new Date(ferries.getPurchaseDate().getTime()));
+            stmnt.setDate(6, new Date(ferries.getServiceDate().getTime()));
+            stmnt.setInt(7, ferries.getCabins());
+            stmnt.setInt(8, ferries.getCrewMembers());
+            stmnt.setString(9, ferries.getName());
+
+            //  execute the query and make sure only one row was inserted 
+            numRowsAffected = stmnt.executeUpdate();
+            if (numRowsAffected == 1) {
+                //Retrieve id assigned to that row and create a Bus object 
+                ResultSet keys = stmnt.getGeneratedKeys();
+                keys.next();
+
+                id = keys.getInt(1);
+
+                ferries.setFerryID(id);
+            } else {
+                System.err.println("No rows were changed");
+                success = false;
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            success = false;
+        }
+        return success;
+    }
 
     public boolean deleteFerry(int ferryID) throws SQLException {
 

@@ -61,7 +61,7 @@ public class CA1V0 {
                     viewBuses(model);
                     break;
                 }
-                 case 3: {
+                case 3: {
                     System.out.println("Viewing Ferries...\n");
                     viewFerries(model);
                     break;
@@ -108,9 +108,14 @@ public class CA1V0 {
         try {
             Scanner in = new Scanner(inputFile);
             while (in.hasNextLine()) {
+                
                 String line = in.nextLine();
                 if (line.equalsIgnoreCase("B")) {
                     createBus(in, m);
+                }
+                else if (line.equalsIgnoreCase("F"))
+                {
+                    createFerry(in, m);
                 }
 
             }
@@ -128,9 +133,7 @@ public class CA1V0 {
         String r = in.nextLine();
         String mk = in.nextLine();
         String md = in.nextLine();
-//        String x = in.nextLine();
         int c = in.nextInt();
-//        x = in.nextLine();
         Double engn = in.nextDouble();
         String x = in.nextLine();
         String pd = in.nextLine();
@@ -147,12 +150,39 @@ public class CA1V0 {
             Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
         }
         int gid = in.nextInt();
-//        x = in.nextLine();
-       // boolean wf = in.nextBoolean();
-        //boolean t = in.nextBoolean();
 
         Bus b = new Bus(r, mk, md, c, engn, purDate, serviceDate, gid);
         model.addBus(b);
+
+    }
+    
+        public static void createFerry(Scanner in, TestModel model) {
+
+
+        String mk = in.nextLine();
+        String md = in.nextLine();
+        int c = in.nextInt();
+        Double engn = in.nextDouble();
+        String x = in.nextLine();
+        String pd = in.nextLine();
+        String sd = in.nextLine();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date purDate = null;
+        Date serviceDate = null;
+
+        try {
+            purDate = df.parse(pd);
+            serviceDate = df.parse(sd);
+        } catch (ParseException ex) {
+            Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int cbns = in.nextInt();
+        int crw = in.nextInt();
+        x = in.nextLine();
+        String nme = in.nextLine();
+        Ferry f = new Ferry(mk, md, c, engn, purDate, serviceDate, cbns, crw, nme);
+        model.addFerry(f);
 
     }
 
@@ -211,13 +241,14 @@ public class CA1V0 {
             System.out.println(b.rowToString());//display data from array list (populated by db)  
         }
     }
-    
+
     private static void viewFerries(TestModel model) {
 
         for (Ferry f : model.getFerries()) {
             System.out.println(f.rowToStringFerries());//display data from array list (populated by db)  
         }
     }
+
     private static void deleteBus(Scanner in, TestModel m) {
         BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());//db connection
         System.out.print("Enter the ID of the bus to delete:");

@@ -56,6 +56,15 @@ public class TestModel {
             System.err.println("ERROR " + e.getMessage());//informs user if SQL error occurs
         }
     }
+    
+     public void addFerry(Ferry f) {
+        this.ferries.add(f);
+        try {
+            ferryTableGateway.insertFerry(f);//inserts bus into db
+        } catch (SQLException e) {
+            System.err.println("ERROR " + e.getMessage());//informs user if SQL error occurs
+        }
+    }
 
     public boolean removeBus(Bus b) {
         return this.buses.remove(b);
