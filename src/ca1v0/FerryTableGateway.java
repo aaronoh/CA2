@@ -59,7 +59,7 @@ public class FerryTableGateway {
         stmnt = this.newConnection.createStatement();
         rs = stmnt.executeQuery(query);
 
-        ferries = new ArrayList<Bus>();
+        ferries = new ArrayList<Ferry>();
         //while the table has rows, retrieve the data from the columns listed below
         while (rs.next()) {
             ferryID = rs.getInt(COLUMN_ID);

@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Aaron
  */
-public class Vehicles {
+public abstract class Vehicles {
 
     private String make;
     private String model;

@@ -32,10 +32,11 @@ public class CA1V0 {
             System.out.println("-----------------------MENU-------------------------");
             System.out.println("1 - Enter Bus");
             System.out.println("2 - View current Bus list");
-            System.out.println("3 - Delete from Bus list");
-            System.out.println("4 - Update an item in bus list");
-            System.out.println("5 - File Input");
-            System.out.println("6 - Exit");
+            System.out.println("3 - View current Ferry list");
+            System.out.println("4 - Delete from Bus list");
+            System.out.println("5 - Update an item in bus list");
+            System.out.println("6 - File Input");
+            System.out.println("7 - Exit");
             System.out.println("-----------------------------------------------------\n");
             System.out.println("What would you like to do?");
             menuOpt = in.nextInt();
@@ -60,13 +61,18 @@ public class CA1V0 {
                     viewBuses(model);
                     break;
                 }
-                case 3: {
+                 case 3: {
+                    System.out.println("Viewing Ferries...\n");
+                    viewFerries(model);
+                    break;
+                }
+                case 4: {
                     System.out.println("Deleting bus from list...\n");
                     deleteBus(in, model);
 
                     break;
                 }
-                case 4: {
+                case 5: {
 
                     System.out.println("Updating....");
                     editBus(in, model);
@@ -74,18 +80,18 @@ public class CA1V0 {
                     break;
                 }
 
-                case 5: {
+                case 6: {
                     System.out.println("File Input....");
                     readBusFile(in, model);
                     break;
                 }
-                case 6: {
+                case 7: {
                     System.out.println("Exiting....");
                     break;
                 }
             }
             //Ends the loop when 6
-        } while (menuOpt != 6);
+        } while (menuOpt != 7);
     }
 
     private static String getString(Scanner in, String a) {
@@ -205,7 +211,13 @@ public class CA1V0 {
             System.out.println(b.rowToString());//display data from array list (populated by db)  
         }
     }
+    
+    private static void viewFerries(TestModel model) {
 
+        for (Ferry f : model.getFerries()) {
+            System.out.println(f.rowToStringFerries());//display data from array list (populated by db)  
+        }
+    }
     private static void deleteBus(Scanner in, TestModel m) {
         BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());//db connection
         System.out.print("Enter the ID of the bus to delete:");

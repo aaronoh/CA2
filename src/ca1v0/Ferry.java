@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca1v0;
+package CA1V0;
 
 import java.util.Date;
 
@@ -11,14 +11,14 @@ import java.util.Date;
  *
  * @author Aaron
  */
-public class Ferry extends Vehicles{
-    
+public class Ferry extends Vehicles {
+
     private int ferryID;
     private int cabins;
     private int crewMembers;
     private String name;
-    
-       public Ferry( String mk, String md, int c, Double engn, Date pd, Date sd, int cb,int cm, String nm) {
+
+    public Ferry(String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
         super(mk, md, c, engn, pd, sd);
         //constructor used by add bus as the user does not enter the bus id (AI in the database)
         this.cabins = cb;
@@ -26,7 +26,7 @@ public class Ferry extends Vehicles{
         this.name = nm;
     }
 
-        public Ferry(int fid, String mk, String md, int c, Double engn, Date pd, Date sd, int cb,int cm, String nm) {
+    public Ferry(int fid, String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
         super(mk, md, c, engn, pd, sd);
         //constructor used by add bus as the user does not enter the bus id (AI in the database)
         this.ferryID = fid;
@@ -90,8 +90,7 @@ public class Ferry extends Vehicles{
     public void setName(String name) {
         this.name = name;
     }
-        
-    
+
     public String rowToStringFerries() {
         //method used to present data stored in array list (populated by db) in view method 
         return "\n***********************************\n"

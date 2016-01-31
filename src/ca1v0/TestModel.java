@@ -17,41 +17,42 @@ public class TestModel {
     }
 
     private ArrayList<Bus> buses;//array list that stores the bus objects
+    private ArrayList<Ferry> ferries;
     BusTableGateway busTableGateway;
-    
+    FerryTableGateway ferryTableGateway;
+
     private TestModel() {
 
-        
         busTableGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());
         try {
             this.buses = busTableGateway.getBuses();
-//        this.buses.add(
-//                new Bus(
-//                        1, "151D4334", "Volvo", " Bussar AB", 60, 2.5, "20/01/2015", "19/09/2015")
-//        );
-//
-//        this.buses.add(
-//                new Bus(
-//                        2, "141D46534", "Volvo", " Bussar AB", 50, 3.0, "20/01/2014", "17/09/2015"));
-//
-//        this.buses.add(
-//                new Bus(
-//                        3, "141D56534", "Volvo", " Bussar AB", 55, 3.0, "20/05/2014", "19/09/2015"));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ferryTableGateway = new FerryTableGateway(DBConnection.getInstance().getDbConnection());
+        try {
+            this.ferries = ferryTableGateway.getFerries();
         } catch (SQLException ex) {
             Logger.getLogger(TestModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+            
 
     public ArrayList<Bus> getBuses() {
         return this.buses;
+    }
+
+    public ArrayList<Ferry> getFerries() {
+        return this.ferries;
     }
 
     public void addBus(Bus b) {
         this.buses.add(b);
         try {
             busTableGateway.insertBus(b);//inserts bus into db
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("ERROR " + e.getMessage());//informs user if SQL error occurs
         }
     }
@@ -59,21 +60,16 @@ public class TestModel {
     public boolean removeBus(Bus b) {
         return this.buses.remove(b);
     }
-    
-    public boolean updateBus (Bus b)
-    {
+
+    public boolean updateBus(Bus b) {
         boolean update = false;
-        try
-        {
+        try {
             update = this.busTableGateway.updateBus(b);
-        }
-        catch (SQLException e)
-        {
-           System.err.println("There was an error: " + e);
+        } catch (SQLException e) {
+            System.err.println("There was an error: " + e);
         }
         return update;
     }
-    
 
     public Bus findBusBybusId(int busId) {
         Bus b = null;
