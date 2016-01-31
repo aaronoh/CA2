@@ -7,8 +7,6 @@ BusIN
 2015-12-02
 2016-12-02
 1
-false
-false
 B
 14444D32232
 VolvoIn
@@ -18,5 +16,3 @@ BusIN
 2015-12-02
 2016-12-02
 1
-false
-false

@@ -142,8 +142,8 @@ public class CA1V0 {
         }
         int gid = in.nextInt();
 //        x = in.nextLine();
-        boolean wf = in.nextBoolean();
-        boolean t = in.nextBoolean();
+       // boolean wf = in.nextBoolean();
+        //boolean t = in.nextBoolean();
 
         Bus b = new Bus(r, mk, md, c, engn, purDate, serviceDate, gid);
         model.addBus(b);

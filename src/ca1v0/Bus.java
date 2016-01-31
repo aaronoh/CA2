@@ -7,7 +7,6 @@ package CA1V0;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Aaron
@@ -18,13 +17,13 @@ public class Bus extends Vehicles {
     private String reg;
     private int garageId;
 
-   public Bus(String r, String mk, String md, int c, Double engn, Date pd, Date sd, int gid) {
-       super(mk, md, c, engn, pd, sd);
-       //constructor used by add bus as the user does not enter the bus id (AI in the database)
+    public Bus(String r, String mk, String md, int c, Double engn, Date pd, Date sd, int gid) {
+        super(mk, md, c, engn, pd, sd);
+        //constructor used by add bus as the user does not enter the bus id (AI in the database)
         this.reg = r;
         this.garageId = gid;
     }
-    
+
     public Bus(int id, String r, String mk, String md, int c, Double engn, Date pd, Date sd, int gid) {
         //constructor used by array list (which is populated by db on initial run) for view as viewing id is needed 
         super(mk, md, c, engn, pd, sd);
@@ -61,7 +60,7 @@ public class Bus extends Vehicles {
         this.reg = reg;
     }
 
-       public int getgarageId() {
+    public int getgarageId() {
         return garageId;
     }
 
@@ -72,10 +71,10 @@ public class Bus extends Vehicles {
         this.garageId = garageId;
     }
 
- public String rowToString() {
+    public String rowToString() {
         //method used to present data stored in array list (populated by db) in view method 
-        return  "\n***********************************\n"
-                + "*  Bus ID: " + this.getbusId() 
+        return "\n***********************************\n"
+                + "*  Bus ID: " + this.getbusId()
                 + "\n*  Registration: " + this.getReg()
                 + "\n*  Make: " + this.getMake()
                 + "\n*  Model: " + this.getModel()
@@ -84,7 +83,7 @@ public class Bus extends Vehicles {
                 + "\n*  Purchase Date: " + this.getPurchaseDate()
                 + "\n*  Service Date: " + this.getServiceDate()
                 + "\n*  Garage ID: " + this.getgarageId()
-                +"\n***********************************\n";
-    }
+                + "\n***********************************\n";
 
+    }
 }
