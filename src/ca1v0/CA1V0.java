@@ -235,19 +235,68 @@ public class CA1V0 {
         return b;
     }
 
-    private static void viewBuses(TestModel model) {
+//    private static void viewBuses(TestModel model) {
+//
+//        for (Bus b : model.getBuses()) {
+//            System.out.println(b.rowToString());//display data from array list (populated by db)  
+//        }
+//    }
 
-        for (Bus b : model.getBuses()) {
-            System.out.println(b.rowToString());//display data from array list (populated by db)  
-        }
-    }
-
-    private static void viewFerries(TestModel model) {
+    private static void viewFerries1(TestModel model) {
 
         for (Ferry f : model.getFerries()) {
             System.out.println(f.rowToStringFerries());//display data from array list (populated by db)  
         }
     }
+    
+         private static void viewFerries(TestModel m) {
+       List<Ferry> ferries = m.getFerries();
+       System.out.println(); 
+        if(ferries.isEmpty()) { 
+            System.out.println("There are no ferries in the database");
+        } else {
+          System.out.printf("%8s %8s %13s %12s %13s %16s %16s %9s %12s %8s\n",
+                    "Ferry ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name"); 
+            for (Ferry f : ferries) {
+                System.out.printf("%5s %13s %14s %7s %12s %17s %17s %8s %8s %15s\n",
+                        f.getFerryID(),
+                        f.getMake(),
+                        f.getModel(),
+                        f.getCapacity(),
+                        f.getEngineSize(),
+                        f.getPurchaseDate(),
+                        f.getServiceDate(),
+                        f.getCabins(),
+                        f.getCrewMembers(),
+                        f.getName());
+                       
+            }
+        }
+        System.out.println();
+    } 
+    
+     private static void viewBuses(TestModel m) {
+       List<Bus> buses = m.getBuses();
+       System.out.println(); 
+        if(buses.isEmpty()) { 
+            System.out.println("There are no buses in the database");
+        } else {
+          System.out.printf("%8s %10s %12s %12s %13s %16s %16s %12s\n",
+                    "Bus ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Garaged ID"); 
+            for (Bus b : buses) {
+                System.out.printf("%5s %13s %11s %10s %12s %19s %17s %8s\n",
+                        b.getbusId(),
+                        b.getMake(),
+                        b.getModel(),
+                        b.getCapacity(),
+                        b.getEngineSize(),
+                        b.getPurchaseDate(),
+                        b.getServiceDate(),
+                        b.getgarageId());
+            }
+        }
+        System.out.println();
+    }  
 
     private static void deleteBus(Scanner in, TestModel m) {
         BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());//db connection
