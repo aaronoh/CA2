@@ -41,7 +41,7 @@ public class Ferry extends Vehicles {
          
         // call the superclass display for superclass variales
         super.display();
-        System.out.printf("%7s %14s %8s %7s\n",
+        System.out.printf("%7s %9s %16s %9s\n",
         this.cabins,
         this.crewMembers,
         this.name,

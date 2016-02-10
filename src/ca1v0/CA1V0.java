@@ -247,14 +247,14 @@ public class CA1V0 {
 //        }
 //    }
     private static void viewFerries(TestModel m) {
-        List<Ferry> ferries = m.getFerries();
+        List<Ferry> vehicles = m.getFerries();
         System.out.println();
-        if (ferries.isEmpty()) {
+        if (vehicles.isEmpty()) {
             System.out.println("There are no ferries in the database");//if ferrys arraylist is empty display this 
         } else {
-            System.out.printf("%13s %11s %12s %14s %15s %15s %16s %9s %12s %8s\n",
+            System.out.printf("%13s %11s %12s %14s %15s %15s %7s %14s %8s %13s\n\n",
                      "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name", "Ferry ID");
-            for (Ferry f : ferries) {
+            for (Vehicles vh : vehicles) {
 //               System.out.printf("%13s %14s %7s %12s %17s %17s %8s %8s %15s %5s \n",
 //                        f.getFerryID(),
 //                        f.getMake(),
@@ -266,7 +266,7 @@ public class CA1V0 {
 //                        f.getCabins(),
 //                        f.getCrewMembers(),
 //                        f.getName());
-                          f.display();
+                          vh.display();
 
             }
         }
@@ -274,15 +274,15 @@ public class CA1V0 {
     }
 
     private static void viewBuses(TestModel m) {
-        List<Bus> buses = m.getBuses();
+        List<Bus> vehicles = m.getBuses();
         System.out.println();
-        if (buses.isEmpty()) {
+        if (vehicles.isEmpty()) {
             System.out.println("There are no buses in the database");
             
         } else {
             System.out.printf("%13s %11s %12s %14s %15s %15s %8s %9s %15s\n\n",
                     "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Bus ID", "Reg", "Garaged ID");
-            for (Bus b : buses) {
+            for (Vehicles vh : vehicles) {
 //                System.out.printf("%5s %14s %13s %11s %10s %12s %19s %17s %8s\n",
 //                        b.getbusId(),
 //                        b.getReg(),
@@ -293,7 +293,7 @@ public class CA1V0 {
 //                        b.getPurchaseDate(),
 //                        b.getServiceDate(),
 //                        b.getgarageId());
-                          b.display();
+                          vh.display();
                 
      
                 
