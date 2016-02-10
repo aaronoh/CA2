@@ -31,6 +31,19 @@ public class Bus extends Vehicles {
         this.reg = r;
         this.garageId = gid;
     }
+    
+    // this display() overrides the display() in the staff superclass
+    @Override
+    public void display()
+    {
+         
+        // call the superclass display to deal with staff variables
+        super.display();
+        System.out.printf("%7s %14s %8s\n",
+        this.busId,
+        this.reg,
+        this.garageId);
+    }
 
     /**
      * @return the busId

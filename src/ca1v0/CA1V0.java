@@ -30,7 +30,7 @@ public class CA1V0 {
         //Allowing user to run the programme in a loop while the menuOpt isnt 5 (exit)
         do {
             System.out.println("-----------------------MENU-------------------------");
-            System.out.println("1 - Enter Bus");
+            System.out.println("1 - Add Bus");
             System.out.println("2 - View current Bus list");
             System.out.println("3 - View current Ferry list");
             System.out.println("4 - Delete from Bus list");
@@ -45,7 +45,7 @@ public class CA1V0 {
 
             switch (menuOpt) {
                 case 1: {
-                    System.out.println("Creating bus...\n");
+                    System.out.println("Adding bus...\n");
                     b = readBus(in);//user input method
                     model.addBus(b);//adds bus object to array list 
                     BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());
@@ -57,7 +57,7 @@ public class CA1V0 {
                     break;
                 }
                 case 2: {
-                    System.out.println("Viewing bus...\n");
+                    System.out.println("Viewing Buses...\n");
                     viewBuses(model);
                     break;
                 }
@@ -74,7 +74,7 @@ public class CA1V0 {
                 }
                 case 5: {
 
-                    System.out.println("Updating....");
+                    System.out.println("Updating Bus List....");
                     editBus(in, model);
 
                     break;
@@ -90,7 +90,7 @@ public class CA1V0 {
                     break;
                 }
             }
-            //Ends the loop when 6
+            //Ends the loop when 7 chosen
         } while (menuOpt != 7);
     }
 
@@ -108,13 +108,11 @@ public class CA1V0 {
         try {
             Scanner in = new Scanner(inputFile);
             while (in.hasNextLine()) {
-                
+
                 String line = in.nextLine();
                 if (line.equalsIgnoreCase("B")) {
                     createBus(in, m);
-                }
-                else if (line.equalsIgnoreCase("F"))
-                {
+                } else if (line.equalsIgnoreCase("F")) {
                     createFerry(in, m);
                 }
 
@@ -155,9 +153,8 @@ public class CA1V0 {
         model.addBus(b);
 
     }
-    
-        public static void createFerry(Scanner in, TestModel model) {
 
+    public static void createFerry(Scanner in, TestModel model) {
 
         String mk = in.nextLine();
         String md = in.nextLine();
@@ -167,7 +164,7 @@ public class CA1V0 {
         String pd = in.nextLine();
         String sd = in.nextLine();
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("YYYY-MM-DD");
         Date purDate = null;
         Date serviceDate = null;
 
@@ -200,13 +197,14 @@ public class CA1V0 {
         //User input for adding bus to bus object
         try {
             System.out.println("Enter purchase date (YYYY-MM-DD): ");
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-DD");
             purchaseDate = df.parse(in.next());
 
             System.out.println("Enter service date (YYYY-MM-DD): ");
             serviceDate = df.parse(in.next());
         } catch (ParseException e) {
             System.err.println("ERROR invalid date format (yyyy-mm-dd)");
+            System.err.println("Please restart the programme, unable to recover from this error");
             readBus(in); // loop back to the beginning of the method if error in date format
         }
 
@@ -235,28 +233,27 @@ public class CA1V0 {
         return b;
     }
 
+//    OLD LIST VIEW METHODS   
 //    private static void viewBuses(TestModel model) {
 //
 //        for (Bus b : model.getBuses()) {
 //            System.out.println(b.rowToString());//display data from array list (populated by db)  
 //        }
 //    }
-
-    private static void viewFerries1(TestModel model) {
-
-        for (Ferry f : model.getFerries()) {
-            System.out.println(f.rowToStringFerries());//display data from array list (populated by db)  
-        }
-    }
-    
-         private static void viewFerries(TestModel m) {
-       List<Ferry> ferries = m.getFerries();
-       System.out.println(); 
-        if(ferries.isEmpty()) { 
-            System.out.println("There are no ferries in the database");
+//    private static void viewFerries(TestModel model) {
+//
+//        for (Ferry f : model.getFerries()) {
+//            System.out.println(f.rowToStringFerries());//display data from array list (populated by db)  
+//        }
+//    }
+    private static void viewFerries(TestModel m) {
+        List<Ferry> ferries = m.getFerries();
+        System.out.println();
+        if (ferries.isEmpty()) {
+            System.out.println("There are no ferries in the database");//if ferrys arraylist is empty display this 
         } else {
-          System.out.printf("%8s %8s %13s %12s %13s %16s %16s %9s %12s %8s\n",
-                    "Ferry ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name"); 
+            System.out.printf("%8s %8s %13s %12s %13s %16s %16s %9s %12s %8s\n",
+                    "Ferry ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name");
             for (Ferry f : ferries) {
                 System.out.printf("%5s %13s %14s %7s %12s %17s %17s %8s %8s %15s\n",
                         f.getFerryID(),
@@ -269,34 +266,41 @@ public class CA1V0 {
                         f.getCabins(),
                         f.getCrewMembers(),
                         f.getName());
-                       
+
             }
         }
         System.out.println();
-    } 
-    
-     private static void viewBuses(TestModel m) {
-       List<Bus> buses = m.getBuses();
-       System.out.println(); 
-        if(buses.isEmpty()) { 
+    }
+
+    private static void viewBuses(TestModel m) {
+        List<Bus> buses = m.getBuses();
+        System.out.println();
+        if (buses.isEmpty()) {
             System.out.println("There are no buses in the database");
+            
         } else {
-          System.out.printf("%8s %10s %12s %12s %13s %16s %16s %12s\n",
-                    "Bus ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Garaged ID"); 
+            System.out.printf("%13s %11s %12s %14s %15s %15s %8s %9s %15s\n\n",
+                    "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Bus ID", "Reg", "Garaged ID");
             for (Bus b : buses) {
-                System.out.printf("%5s %13s %11s %10s %12s %19s %17s %8s\n",
-                        b.getbusId(),
-                        b.getMake(),
-                        b.getModel(),
-                        b.getCapacity(),
-                        b.getEngineSize(),
-                        b.getPurchaseDate(),
-                        b.getServiceDate(),
-                        b.getgarageId());
+//                System.out.printf("%5s %14s %13s %11s %10s %12s %19s %17s %8s\n",
+//                        b.getbusId(),
+//                        b.getReg(),
+//                        b.getMake(),
+//                        b.getModel(),
+//                        b.getCapacity(),
+//                        b.getEngineSize(),
+//                        b.getPurchaseDate(),
+//                        b.getServiceDate(),
+//                        b.getgarageId());
+                           b.display();
+                
+     
+                
+                        
             }
         }
         System.out.println();
-    }  
+    }
 
     private static void deleteBus(Scanner in, TestModel m) {
         BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());//db connection
