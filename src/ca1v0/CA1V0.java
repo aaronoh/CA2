@@ -252,20 +252,21 @@ public class CA1V0 {
         if (ferries.isEmpty()) {
             System.out.println("There are no ferries in the database");//if ferrys arraylist is empty display this 
         } else {
-            System.out.printf("%8s %8s %13s %12s %13s %16s %16s %9s %12s %8s\n",
-                    "Ferry ID", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name");
+            System.out.printf("%13s %11s %12s %14s %15s %15s %16s %9s %12s %8s\n",
+                     "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name", "Ferry ID");
             for (Ferry f : ferries) {
-                System.out.printf("%5s %13s %14s %7s %12s %17s %17s %8s %8s %15s\n",
-                        f.getFerryID(),
-                        f.getMake(),
-                        f.getModel(),
-                        f.getCapacity(),
-                        f.getEngineSize(),
-                        f.getPurchaseDate(),
-                        f.getServiceDate(),
-                        f.getCabins(),
-                        f.getCrewMembers(),
-                        f.getName());
+//               System.out.printf("%13s %14s %7s %12s %17s %17s %8s %8s %15s %5s \n",
+//                        f.getFerryID(),
+//                        f.getMake(),
+//                        f.getModel(),
+//                        f.getCapacity(),
+//                        f.getEngineSize(),
+//                        f.getPurchaseDate(),
+//                        f.getServiceDate(),
+//                        f.getCabins(),
+//                        f.getCrewMembers(),
+//                        f.getName());
+                          f.display();
 
             }
         }
@@ -292,7 +293,7 @@ public class CA1V0 {
 //                        b.getPurchaseDate(),
 //                        b.getServiceDate(),
 //                        b.getgarageId());
-                           b.display();
+                          b.display();
                 
      
                 

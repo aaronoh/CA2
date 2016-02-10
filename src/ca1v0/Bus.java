@@ -32,12 +32,12 @@ public class Bus extends Vehicles {
         this.garageId = gid;
     }
     
-    // this display() overrides the display() in the staff superclass
+    //  overrides the display() in the vehicles superclass
     @Override
     public void display()
     {
          
-        // call the superclass display to deal with staff variables
+        // call the superclass display for superclass variales
         super.display();
         System.out.printf("%7s %14s %8s\n",
         this.busId,

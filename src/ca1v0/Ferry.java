@@ -34,6 +34,19 @@ public class Ferry extends Vehicles {
         this.crewMembers = cm;
         this.name = nm;
     }
+    
+     @Override
+    public void display()
+    {
+         
+        // call the superclass display for superclass variales
+        super.display();
+        System.out.printf("%7s %14s %8s %7s\n",
+        this.cabins,
+        this.crewMembers,
+        this.name,
+        this.ferryID);
+    }
 
     /**
      * @return the ferryID

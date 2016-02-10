@@ -34,7 +34,7 @@ public abstract class Vehicles {
    
      public void display()
     {
-       // System.out.println("In staff Display");
+       
         System.out.printf("%13s %11s %9s %13s %17s %16s ",
             this.make,
             this.model,
