@@ -13,53 +13,39 @@ import java.util.Date;
  */
 public class Ferry extends Vehicles {
 
-    private int ferryID;
+    private int id;
     private int cabins;
     private int crewMembers;
     private String name;
 
-    public Ferry(String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
-        super(mk, md, c, engn, pd, sd);
+//    public Ferry(String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
+//        super(mk, md, c, engn, pd, sd);
+//        //constructor used by add bus as the user does not enter the bus id (AI in the database)
+//        this.cabins = cb;
+//        this.crewMembers = cm;
+//        this.name = nm;
+//    }
+    public Ferry(int id, String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
+        super(id, mk, md, c, engn, pd, sd);
         //constructor used by add bus as the user does not enter the bus id (AI in the database)
         this.cabins = cb;
         this.crewMembers = cm;
         this.name = nm;
     }
 
-    public Ferry(int fid, String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
-        super(mk, md, c, engn, pd, sd);
-        //constructor used by add bus as the user does not enter the bus id (AI in the database)
-        this.ferryID = fid;
-        this.cabins = cb;
-        this.crewMembers = cm;
-        this.name = nm;
+    public Ferry(String mk, String md, int c, Double engn, Date pd, Date sd, int cb, int cm, String nm) {
+        this(-1, mk, md, c, engn, pd, sd, cb, cm, nm);
     }
-    
-     @Override
-    public void display()
-    {
-         
+
+    @Override
+    public void display() {
+
         // call the superclass display for superclass variales
         super.display();
-        System.out.printf("%7s %9s %16s %9s\n",
-        this.cabins,
-        this.crewMembers,
-        this.name,
-        this.ferryID);
-    }
-
-    /**
-     * @return the ferryID
-     */
-    public int getFerryID() {
-        return ferryID;
-    }
-
-    /**
-     * @param ferryID the ferryID to set
-     */
-    public void setFerryID(int ferryID) {
-        this.ferryID = ferryID;
+        System.out.printf("%7s %12s %16s\n",
+                this.cabins,
+                this.crewMembers,
+                this.name);
     }
 
     /**
@@ -107,7 +93,6 @@ public class Ferry extends Vehicles {
     public String rowToStringFerries() {
         //method used to present data stored in array list (populated by db) in view method 
         return "\n***********************************\n"
-                + "*  ferryID: " + this.getFerryID()
                 + "\n*  Make: " + this.getMake()
                 + "\n*  Model: " + this.getModel()
                 + "\n*  Capacity: " + this.getCapacity()

@@ -13,9 +13,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class FerryTableGateway {
+
     //defining database table/column names
     private static final String TABLE_NAME = "ferry";
-    private static final String COLUMN_ID = "ferryID";
+    private static final String COLUMN_ID = "id";
     private static final String COLUMN_MAKE = "make";
     private static final String COLUMN_MODEL = "model";
     private static final String COLUMN_CAPACITY = "capacity";
@@ -34,14 +35,13 @@ public class FerryTableGateway {
     }
 
     //Method used to view data from bus table, data is taken from DB and stored in array list
-
     public ArrayList<Ferry> getFerries() throws SQLException {
         String query;                   // the SQL query to execute
         Statement stmnt;               // the java object used to execute SQL query
         ResultSet rs;                   // the ResultSet representing the result of the SQL query
         ArrayList<Ferry> ferries;   // the ArrayList containing the Bus object
 
-        int ferryID;
+        int id;
         String make;
         String model;
         int capacity;
@@ -62,7 +62,7 @@ public class FerryTableGateway {
         ferries = new ArrayList<Ferry>();
         //while the table has rows, retrieve the data from the columns listed below
         while (rs.next()) {
-            ferryID = rs.getInt(COLUMN_ID);
+            id = rs.getInt(COLUMN_ID);
             make = rs.getString(COLUMN_MAKE);
             model = rs.getString(COLUMN_MODEL);
             capacity = rs.getInt(COLUMN_CAPACITY);
@@ -73,7 +73,7 @@ public class FerryTableGateway {
             crewMembers = rs.getInt(COLUMN_CREWMEMBERS);
             name = rs.getString(COLUMN_NAME);
             //create a new bus object using the data pulled from the db
-            ferry = new Ferry(ferryID,make, model, capacity, engineSize, purchaseDate, serviceDate, cabins, crewMembers, name);
+            ferry = new Ferry(id, make, model, capacity, engineSize, purchaseDate, serviceDate, cabins, crewMembers, name);
             ferries.add(ferry); //add the bus object to the array list
         }
         return ferries; //returns arraylist of all buses in table
@@ -98,8 +98,7 @@ public class FerryTableGateway {
                 + COLUMN_SERVICEDATE + ", "
                 + COLUMN_CABINS + ","
                 + COLUMN_CREWMEMBERS + ", "
-                + COLUMN_NAME 
-                
+                + COLUMN_NAME
                 + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // create a PreparedStatement object to execute the query
@@ -124,7 +123,7 @@ public class FerryTableGateway {
 
                 id = keys.getInt(1);
 
-                ferries.setFerryID(id);
+                ferries.setId(id);
             } else {
                 System.err.println("No rows were changed");
                 success = false;
@@ -137,7 +136,7 @@ public class FerryTableGateway {
         return success;
     }
 
-    public boolean deleteFerry(int ferryID) throws SQLException {
+    public boolean deleteFerry(int id) throws SQLException {
 
         String query; // the SQL query to execute
         PreparedStatement stmnt;  // the java object used to execute SQL query
@@ -146,7 +145,7 @@ public class FerryTableGateway {
         query = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = ? ";
 
         stmnt = newConnection.prepareStatement(query);//connect to db
-        stmnt.setInt(1, ferryID);//assigns the busid to the busid collumn in the db
+        stmnt.setInt(1, id);//assigns the busid to the busid collumn in the db
 
         numRowsAffected = stmnt.executeUpdate();
 
@@ -178,7 +177,7 @@ public class FerryTableGateway {
 //        stmnt.setDate(6, new Date(b.getPurchaseDate().getTime()));
 //        stmnt.setDate(7, new Date(b.getServiceDate().getTime()));
 //        stmnt.setInt(8, b.getgarageId());
-//        stmnt.setInt(9, b.getbusId());
+//        stmnt.setInt(9, b.getid());
 //        
 //        
 //
@@ -186,5 +185,4 @@ public class FerryTableGateway {
 //        
 //        return (numRowsAffected == 1);
 //    }
-
 }

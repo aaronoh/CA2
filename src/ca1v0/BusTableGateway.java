@@ -13,9 +13,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BusTableGateway {
+
     //defining database table/column names
     private static final String TABLE_NAME = "bus";
-    private static final String COLUMN_ID = "busId";
+    private static final String COLUMN_ID = "id";
     private static final String COLUMN_REG = "reg";
     private static final String COLUMN_MAKE = "make";
     private static final String COLUMN_MODEL = "model";
@@ -33,14 +34,13 @@ public class BusTableGateway {
     }
 
     //Method used to view data from bus table, data is taken from DB and stored in array list
-
     public ArrayList<Bus> getBuses() throws SQLException {
         String query;                   // the SQL query to execute
         Statement stmnt;               // the java object used to execute SQL query
         ResultSet rs;                   // the ResultSet representing the result of the SQL query
         ArrayList<Bus> busses;   // the ArrayList containing the Bus object
 
-        int busId;
+        int id;
         String reg;
         String make;
         String model;
@@ -60,7 +60,7 @@ public class BusTableGateway {
         busses = new ArrayList<Bus>();
         //while the table has rows, retrieve the data from the columns listed below
         while (rs.next()) {
-            busId = rs.getInt(COLUMN_ID);
+            id = rs.getInt(COLUMN_ID);
             reg = rs.getString(COLUMN_REG);
             make = rs.getString(COLUMN_MAKE);
             model = rs.getString(COLUMN_MODEL);
@@ -70,7 +70,7 @@ public class BusTableGateway {
             serviceDate = rs.getDate(COLUMN_SERVICEDATE);
             garageId = rs.getInt(COLUMN_GARAGEID);
             //create a new bus object using the data pulled from the db
-            bus = new Bus(busId, reg, make, model, capacity, engineSize, purchaseDate, serviceDate, garageId);
+            bus = new Bus(id, reg, make, model, capacity, engineSize, purchaseDate, serviceDate, garageId);
             busses.add(bus); //add the bus object to the array list
         }
         return busses; //returns arraylist of all buses in table
@@ -118,7 +118,7 @@ public class BusTableGateway {
 
                 id = keys.getInt(1);
 
-                buses.setBusId(id);
+                buses.setId(id);
             } else {
                 System.err.println("No rows were changed");
                 success = false;
@@ -151,7 +151,7 @@ public class BusTableGateway {
         String query; // the SQL query to execute
         PreparedStatement stmnt; // the java object used to execute SQL query
         int numRowsAffected = 0;
-            //SQL update query
+        //SQL update query
         query = " UPDATE " + TABLE_NAME + " SET "
                 + COLUMN_REG + " = ?, "
                 + COLUMN_MAKE + " = ?, "
@@ -172,12 +172,10 @@ public class BusTableGateway {
         stmnt.setDate(6, new Date(b.getPurchaseDate().getTime()));
         stmnt.setDate(7, new Date(b.getServiceDate().getTime()));
         stmnt.setInt(8, b.getgarageId());
-        stmnt.setInt(9, b.getbusId());
-        
-        
+        stmnt.setInt(9, b.getId());
 
         numRowsAffected = stmnt.executeUpdate();
-        
+
         return (numRowsAffected == 1);
     }
 

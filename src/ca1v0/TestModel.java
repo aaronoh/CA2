@@ -29,7 +29,7 @@ public class TestModel {
         } catch (SQLException ex) {
             Logger.getLogger(TestModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ferryTableGateway = new FerryTableGateway(DBConnection.getInstance().getDbConnection());
         try {
             this.ferries = ferryTableGateway.getFerries();
@@ -38,7 +38,6 @@ public class TestModel {
         }
 
     }
-            
 
     public ArrayList<Bus> getBuses() {
         return this.buses;
@@ -56,8 +55,8 @@ public class TestModel {
             System.err.println("ERROR " + e.getMessage());//informs user if SQL error occurs
         }
     }
-    
-     public void addFerry(Ferry f) {
+
+    public void addFerry(Ferry f) {
         this.ferries.add(f);
         try {
             ferryTableGateway.insertFerry(f);//inserts bus into db
@@ -80,13 +79,13 @@ public class TestModel {
         return update;
     }
 
-    public Bus findBusBybusId(int busId) {
+    public Bus findBusByid(int id) {
         Bus b = null;
         int i = 0;
         boolean found = false;
         while (i < this.buses.size() && !found) {//while i is less than the number of items in the array list and i hasn't been found
             b = this.buses.get(i);
-            if (b.getbusId() == busId) {
+            if (b.getId() == id) {
                 found = true;
             } else {
                 i++;

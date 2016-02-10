@@ -83,13 +83,13 @@ public class CA1V0 {
                     readBusFile(in, model);
                     break;
                 }
-                
-                 case 4: {
+
+                case 4: {
                     System.out.println("Generating Maintenance Invoices....");
                     //generateMInvoices(model);
                     break;
                 }
-                
+
                 case 0: {
                     System.out.println("Exiting....");
                     break;
@@ -189,7 +189,7 @@ public class CA1V0 {
     }
 //
 //    private static Bus readBus(Scanner in) {
-//        int busId;
+//        int id;
 //        String reg;
 //        String make;
 //        String model;
@@ -257,8 +257,8 @@ public class CA1V0 {
         if (vehicles.isEmpty()) {
             System.out.println("There are no ferries in the database");//if ferrys arraylist is empty display this 
         } else {
-            System.out.printf("%13s %11s %12s %14s %15s %15s %7s %14s %8s %13s\n\n",
-                     "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name", "Ferry ID");
+            System.out.printf("%10s %11s %12s %12s %15s %15s %15s %9s %15s %10s\n\n",
+                    "Id", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Cabins", "Crew Members", "Name");
             for (Vehicles vh : vehicles) {
 //               System.out.printf("%13s %14s %7s %12s %17s %17s %8s %8s %15s %5s \n",
 //                        f.getFerryID(),
@@ -271,7 +271,7 @@ public class CA1V0 {
 //                        f.getCabins(),
 //                        f.getCrewMembers(),
 //                        f.getName());
-                          vh.display();
+                vh.display();
 
             }
         }
@@ -283,13 +283,13 @@ public class CA1V0 {
         System.out.println();
         if (vehicles.isEmpty()) {
             System.out.println("There are no buses in the database");
-            
+
         } else {
-            System.out.printf("%13s %11s %12s %14s %15s %15s %8s %9s %15s\n\n",
-                    "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Bus ID", "Reg", "Garaged ID");
+            System.out.printf("%11s %11s %12s %12s %15s %14s %15s %9s %16s\n\n",
+                    "Id", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Reg", "Garaged ID");
             for (Vehicles vh : vehicles) {
 //                System.out.printf("%5s %14s %13s %11s %10s %12s %19s %17s %8s\n",
-//                        b.getbusId(),
+//                        b.getid(),
 //                        b.getReg(),
 //                        b.getMake(),
 //                        b.getModel(),
@@ -298,11 +298,8 @@ public class CA1V0 {
 //                        b.getPurchaseDate(),
 //                        b.getServiceDate(),
 //                        b.getgarageId());
-                          vh.display();
-                
-     
-                
-                        
+                vh.display();
+
             }
         }
         System.out.println();
@@ -311,13 +308,13 @@ public class CA1V0 {
 //    private static void deleteBus(Scanner in, TestModel m) {
 //        BusTableGateway busTbGateway = new BusTableGateway(DBConnection.getInstance().getDbConnection());//db connection
 //        System.out.print("Enter the ID of the bus to delete:");
-//        int busId = in.nextInt();
+//        int id = in.nextInt();
 //        Bus b;
 //
-//        b = m.findBusBybusId(busId);//invokes the findBusById method to identify the bus object being deleted
+//        b = m.findBusByid(id);//invokes the findBusById method to identify the bus object being deleted
 //
 //        try {
-//            if (busTbGateway.deleteBus(b.getbusId())) {
+//            if (busTbGateway.deleteBus(b.getid())) {
 //                System.out.println("Bus Deleted Successfully");
 //                m.removeBus(b);
 //            } else {
@@ -328,7 +325,6 @@ public class CA1V0 {
 //        }
 //
 //    }
-
 //    private static void editBusData(Scanner in, Bus b) {
 //        int capacity;
 //        Double engineSize;
@@ -384,14 +380,13 @@ public class CA1V0 {
 //        }
 //
 //    }
-
 //    private static void editBus(Scanner in, TestModel m) {
 //
-//        int busId;
+//        int id;
 //        System.out.print("Enter ID of the bus you wish to edit");
-//        busId = in.nextInt();
+//        id = in.nextInt();
 //        Bus b;
-//        b = m.findBusBybusId(busId);//invokes the findBusById method to identify the bus object being edited
+//        b = m.findBusByid(id);//invokes the findBusById method to identify the bus object being edited
 //
 //        if (b != null) {//if the bus object b has a value invoke the editBusData method
 //            editBusData(in, b);
@@ -405,8 +400,4 @@ public class CA1V0 {
 //            System.out.println("Bus could not be found");
 //        }
 //    }
-
-    
-
-
 }

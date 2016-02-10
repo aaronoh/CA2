@@ -7,13 +7,13 @@ package CA1V0;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Aaron
  */
 public abstract class Vehicles {
 
+    private int id;
     private String make;
     private String model;
     private int capacity;
@@ -21,9 +21,9 @@ public abstract class Vehicles {
     private Date purchaseDate;
     private Date serviceDate;
 
-   public Vehicles(String mk, String md, int c, Double engn, Date pd, Date sd) {
-       //constructor used by add bus as the user does not enter the bus id (AI in the database)
-        
+    public Vehicles(int id, String mk, String md, int c, Double engn, Date pd, Date sd) {
+        //constructor used by view bus as id is needed
+        this.id = id;
         this.make = mk;
         this.model = md;
         this.capacity = c;
@@ -31,17 +31,37 @@ public abstract class Vehicles {
         this.purchaseDate = pd;
         this.serviceDate = sd;
     }
-   
-     public void display()
-    {
-       
-        System.out.printf("%13s %11s %9s %13s %17s %16s ",
-            this.make,
-            this.model,
-            this.capacity,
-            this.engineSize,
-            this.purchaseDate,
-            this.serviceDate);
+
+    public Vehicles(String mk, String md, int c, Double engn, Date pd, Date sd) {
+        //constructor used by add bus as the user does not enter the bus id (AI in the database)
+
+        this(-1, mk, md, c, engn, pd, sd);
+    }
+
+    public void display() {
+
+        System.out.printf("%10s %13s %11s %9s %13s %17s %16s ",
+                this.id,
+                this.make,
+                this.model,
+                this.capacity,
+                this.engineSize,
+                this.purchaseDate,
+                this.serviceDate);
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -127,19 +147,17 @@ public abstract class Vehicles {
     public void setServiceDate(Date serviceDate) {
         this.serviceDate = serviceDate;
     }
-    
-
 
     public String rowToString() {
         //method used to present data stored in array list (populated by db) in view method 
-        return  "\n***********************************\n"
+        return "\n***********************************\n"
                 + "\n*  Make: " + this.getMake()
                 + "\n*  Model: " + this.getModel()
                 + "\n*  Capacity: " + this.getCapacity()
                 + "\n*  Engine Size: " + this.getEngineSize()
                 + "\n*  Purchase Date: " + this.getPurchaseDate()
                 + "\n*  Service Date: " + this.getServiceDate()
-                +"\n***********************************\n";
+                + "\n***********************************\n";
     }
 
 }
