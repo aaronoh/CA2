@@ -148,16 +148,4 @@ public abstract class Vehicles {
         this.serviceDate = serviceDate;
     }
 
-    public String rowToString() {
-        //method used to present data stored in array list (populated by db) in view method 
-        return "\n***********************************\n"
-                + "\n*  Make: " + this.getMake()
-                + "\n*  Model: " + this.getModel()
-                + "\n*  Capacity: " + this.getCapacity()
-                + "\n*  Engine Size: " + this.getEngineSize()
-                + "\n*  Purchase Date: " + this.getPurchaseDate()
-                + "\n*  Service Date: " + this.getServiceDate()
-                + "\n***********************************\n";
-    }
-
 }

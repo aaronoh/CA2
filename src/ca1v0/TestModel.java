@@ -65,20 +65,6 @@ public class TestModel {
         }
     }
 
-    public boolean removeBus(Bus b) {
-        return this.buses.remove(b);
-    }
-
-    public boolean updateBus(Bus b) {
-        boolean update = false;
-        try {
-            update = this.busTableGateway.updateBus(b);
-        } catch (SQLException e) {
-            System.err.println("There was an error: " + e);
-        }
-        return update;
-    }
-
     public Bus findBusByid(int id) {
         Bus b = null;
         int i = 0;

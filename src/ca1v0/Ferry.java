@@ -90,19 +90,4 @@ public class Ferry extends Vehicles {
         this.name = name;
     }
 
-    public String rowToStringFerries() {
-        //method used to present data stored in array list (populated by db) in view method 
-        return "\n***********************************\n"
-                + "\n*  Make: " + this.getMake()
-                + "\n*  Model: " + this.getModel()
-                + "\n*  Capacity: " + this.getCapacity()
-                + "\n*  Engine Size: " + this.getEngineSize()
-                + "\n*  Purchase Date: " + this.getPurchaseDate()
-                + "\n*  Service Date: " + this.getServiceDate()
-                + "\n*  Cabins: " + this.getCabins()
-                + "\n*  Crew Members: " + this.getCrewMembers()
-                + "\n*  Name: " + this.getName()
-                + "\n***********************************\n";
-
-    }
 }
