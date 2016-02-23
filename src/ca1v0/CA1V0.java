@@ -2,6 +2,8 @@ package CA1V0;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -56,7 +58,10 @@ public class CA1V0 {
 
                 case 4: {
                     System.out.println("Generating Maintenance Invoices....");
-                    //generateMInvoices(model);
+                    
+                    Vehicles v = model.getBuses().get(0);
+                   
+                    generateMInvoices(v);
                     break;
                 }
 
@@ -189,5 +194,25 @@ public class CA1V0 {
             }
         }
         System.out.println();
+    }
+    
+    private static void generateMInvoices(Vehicles vehicle)
+    {
+        PrintWriter out = null;
+        
+        try {
+            out = new PrintWriter(new File("out.txt"));
+            
+            out.println(vehicle.printInvoice());
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+        
+        
     }
 }

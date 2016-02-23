@@ -68,4 +68,10 @@ public class Bus extends Vehicles {
     public void setgarageId(int garageId) {
         this.garageId = garageId;
     }
+    
+    @Override
+    public String printInvoice()
+    {
+        return super.displayInvoiceDetails() + "\nMainteneance cost for this month : Euro 750";
+    }
 }

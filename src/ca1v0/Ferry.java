@@ -90,4 +90,13 @@ public class Ferry extends Vehicles {
         this.name = name;
     }
 
+    @Override
+    public String printInvoice() {
+        this.display();
+        
+        System.out.println("TEST");
+        
+        return "";
+    
+    }
 }

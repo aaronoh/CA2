@@ -82,5 +82,26 @@ public class TestModel {
         }
         return b;
     }
+    
+     public Ferry findFerryByid(int id) {
+        Ferry f = null;
+        int i = 0;
+        boolean found = false;
+        while (i < this.ferries.size() && !found) {//while i is less than the number of items in the array list and i hasn't been found
+            f = this.ferries.get(i);
+            if (f.getId() == id) {
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        if (!found) {
+            f = null;
+        }
+        return f;
+    }
+
+     
+
 
 }

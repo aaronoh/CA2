@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Aaron
  */
-public abstract class Vehicles {
+public abstract class Vehicles implements Invoices {
 
     private int id;
     private String make;
@@ -49,6 +49,12 @@ public abstract class Vehicles {
                 this.purchaseDate,
                 this.serviceDate);
     }
+    
+    public String displayInvoiceDetails() {
+
+        return "ID: "+this.id;
+    }
+    
 
     /**
      * @return the id
