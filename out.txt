@@ -3,4 +3,4 @@ Make:Volvo
 Model: X750
 Service Date: 2015-12-22
 
-Mainteneance cost for this month : Euro 750
+Mainteneance cost for this Bus : Euro 750

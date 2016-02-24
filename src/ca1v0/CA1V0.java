@@ -29,8 +29,9 @@ public class CA1V0 {
             System.out.println("-----------------------MENU-------------------------");
             System.out.println("1 - View current Bus list");
             System.out.println("2 - View current Ferry list");
-            System.out.println("3 - File Input");
-            System.out.println("4 - Generate Maintenance Invoices");
+            System.out.println("3 - View all vehicles");
+            System.out.println("4 - File Input");
+            System.out.println("5 - Generate Maintenance Invoices");
             System.out.println("0 - Exit");
             System.out.println("-----------------------------------------------------\n");
             System.out.println("What would you like to do?");
@@ -49,24 +50,37 @@ public class CA1V0 {
                     viewFerries(model);
                     break;
                 }
-
                 case 3: {
+                    System.out.println("Viewing All...\n");
+                    System.out.println("Buses:\n");
+                    viewBuses(model);
+                    System.out.println("Ferries:\n");
+                    viewFerries(model);
+                    break;
+                }
+
+                case 4: {
                     System.out.println("File Input....");
                     readBusFile(in, model);
                     break;
                 }
 
-                case 4: {
-                    try{
+                case 5: {
+                    try {
                         System.out.println("Generating Maintenance Invoices....");
-                    
-                    
-                    Vehicles v = model.getBuses().get(0);
-                   
-                    generateMInvoices(v);
-                    System.out.println("Invoice has been saved to out.txt in your project folder");
+
+//                        System.out.println("Buses:\n");
+//                        viewBuses(model);
+//                        System.out.println("Ferries:\n");
+//                        viewFerries(model);
+
+                        Vehicles v = model.getBuses().get(0);
+
+                        generateMInvoices(v);
+                        System.out.println("Invoice has been saved to out.txt in your project folder");
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        System.out.println("Vehicle not found");
                     }
-                    catch(ArrayIndexOutOfBoundsException ex){System.out.println("Vehicle not found");}
                     break;
                 }
 
@@ -200,16 +214,15 @@ public class CA1V0 {
         }
         System.out.println();
     }
-    
-    private static void generateMInvoices(Vehicles vehicle)
-    {
+
+    private static void generateMInvoices(Vehicles vehicle) {
         PrintWriter out = null;
-        
+
         try {
             out = new PrintWriter(new File("out.txt"));
-            
+
             out.println(vehicle.printInvoice());
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -217,7 +230,6 @@ public class CA1V0 {
                 out.close();
             }
         }
-        
-        
+
     }
 }
