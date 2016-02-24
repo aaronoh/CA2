@@ -83,7 +83,9 @@ public class TestModel {
         return b;
     }
     
-     public Ferry findFerryByid(int id) {
+    
+
+    public Ferry findFerryByid(int id) {
         Ferry f = null;
         int i = 0;
         boolean found = false;
@@ -101,7 +103,21 @@ public class TestModel {
         return f;
     }
 
-     
+    
+    public static int linearSearch(int id[], int x) {
+        boolean found = false;
+        int i = 0;
+        while (!found && i != id.length) {
+            if (id[i] == x) {
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        if (!found) {
+            i = -1;
+        }
 
-
+        return i;
+    }
 }

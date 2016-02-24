@@ -72,6 +72,6 @@ public class Bus extends Vehicles {
     @Override
     public String printInvoice()
     {
-        return super.displayInvoiceDetails() + "\nMainteneance cost for this month : Euro 750";
+        return super.displayInvoiceDetails() + "\nMainteneance cost for this Bus : Euro 750";
     }
 }

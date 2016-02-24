@@ -92,11 +92,7 @@ public class Ferry extends Vehicles {
 
     @Override
     public String printInvoice() {
-        this.display();
-        
-        System.out.println("TEST");
-        
-        return "";
-    
+                
+        return super.displayInvoiceDetails() + "\nMainteneance cost for this Ferry : Euro 1200";
     }
 }

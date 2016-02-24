@@ -51,8 +51,10 @@ public abstract class Vehicles implements Invoices {
     }
     
     public String displayInvoiceDetails() {
+        
+        String result = "ID: " + this.id + "\n" + "Make:" + this.make + "\n" + "Model: " + this.model + "\n" + "Service Date: " + this.serviceDate + "\n";
 
-        return "ID: "+this.id;
+        return result;
     }
     
 

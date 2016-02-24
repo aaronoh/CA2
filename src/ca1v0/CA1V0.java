@@ -57,11 +57,16 @@ public class CA1V0 {
                 }
 
                 case 4: {
-                    System.out.println("Generating Maintenance Invoices....");
+                    try{
+                        System.out.println("Generating Maintenance Invoices....");
+                    
                     
                     Vehicles v = model.getBuses().get(0);
                    
                     generateMInvoices(v);
+                    System.out.println("Invoice has been saved to out.txt in your project folder");
+                    }
+                    catch(ArrayIndexOutOfBoundsException ex){System.out.println("Vehicle not found");}
                     break;
                 }
 
@@ -189,7 +194,7 @@ public class CA1V0 {
             System.out.printf("%11s %11s %12s %12s %15s %14s %15s %9s %16s\n\n",
                     "Id", "Make", "Model", "Capacity", "Engine Size", "Purchase Date", "Service Date", "Reg", "Garaged ID");
             for (Vehicles vh : vehicles) {
-                vh.display();
+                vh.display();//polymorphism
 
             }
         }
