@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CA1V0 {
+public class  CA1V0 {
 
     public static void main(String[] args) {
 
@@ -73,10 +73,15 @@ public class CA1V0 {
 //                        viewBuses(model);
 //                        System.out.println("Ferries:\n");
 //                        viewFerries(model);
+                          int id;
+                        System.out.println(model.getBuses());
+                        System.out.println("Enter ID");
+                        id = in.nextInt();
 
-                        Vehicles v = model.getBuses().get(0);
+                        Vehicles v = model.getBuses().get(id);
 
                         generateMInvoices(v);
+                        System.out.println("Invoice Generated for the First Bus in the Array List");
                         System.out.println("Invoice has been saved to out.txt in your project folder");
                     } catch (ArrayIndexOutOfBoundsException ex) {
                         System.out.println("Vehicle not found");
@@ -116,6 +121,7 @@ public class CA1V0 {
                 }
 
             }
+            System.out.println("Entries added successfully");
             in.close();
 
         } catch (FileNotFoundException ex) {
