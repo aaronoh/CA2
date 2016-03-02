@@ -66,7 +66,7 @@ public class CA1V0 {
                 }
 
                 case 5: {
-                    try {
+      
                         System.out.println("Generating Maintenance Invoices....");
                         System.out.println("Buses:\n");
                         viewBuses(model);
@@ -78,21 +78,23 @@ public class CA1V0 {
 
                         Bus b1;
                         Ferry f1;
-
-                        if (id < 999) {
-                            b1 = model.findBusByid(id);
+                         b1 = model.findBusByid(id);
+                         f1 = model.findFerryByid(id);
+                        if (b1 != null || f1 != null && id < 999) {
+                           
                             generateMInvoices(in, b1, model);
                             System.out.println("Bus Invoice has been saved to out.txt in your project folder");
-                        } else if (id > 999) {
+                        } else if (b1 != null || f1 != null && id > 999) {
 
-                            f1 = model.findFerryByid(id);
+                            
 
                             generateMInvoices(in, f1, model);
                             System.out.println("Ferry Invoice has been saved to your specicified file in your project folder");
                         }
-                    } catch (ArrayIndexOutOfBoundsException ex) {
+                     else {
                         System.out.println("Vehicle not found");
                     }
+                        break;
                 }
 
                 case 0: {
