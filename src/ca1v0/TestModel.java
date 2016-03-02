@@ -36,7 +36,7 @@ public class TestModel {
         } catch (SQLException ex) {
             Logger.getLogger(TestModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     public ArrayList<Bus> getBuses() {

@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class  CA1V0 {
+public class CA1V0 {
 
     public static void main(String[] args) {
 
@@ -69,24 +69,27 @@ public class  CA1V0 {
                     try {
                         System.out.println("Generating Maintenance Invoices....");
 
-//                        System.out.println("Buses:\n");
-//                        viewBuses(model);
-//                        System.out.println("Ferries:\n");
-//                        viewFerries(model);
-                          int id;
-                        System.out.println(model.getBuses());
-                        System.out.println("Enter ID");
+                        int id;
+                        System.out.println("Enter ID of the required vehicle");
                         id = in.nextInt();
 
-                        Vehicles v = model.getBuses().get(id);
+                        Bus b1;
+                        Ferry f1;
 
-                        generateMInvoices(v);
-                        System.out.println("Invoice Generated for the First Bus in the Array List");
-                        System.out.println("Invoice has been saved to out.txt in your project folder");
+                        if (id < 999) {
+                            b1 = model.findBusByid(id);
+                            generateMInvoices(in,b1, model);
+                            System.out.println("Bus Invoice has been saved to out.txt in your project folder");
+                        } else if (id > 999) {
+
+                            f1 = model.findFerryByid(id);
+
+                            generateMInvoices(in,f1, model);
+                            System.out.println("Ferry Invoice has been saved to your specicified file in your project folder");
+                        }
                     } catch (ArrayIndexOutOfBoundsException ex) {
                         System.out.println("Vehicle not found");
                     }
-                    break;
                 }
 
                 case 0: {
@@ -221,11 +224,14 @@ public class  CA1V0 {
         System.out.println();
     }
 
-    private static void generateMInvoices(Vehicles vehicle) {
+    private static void generateMInvoices(Scanner in, Vehicles vehicle, TestModel m) {
         PrintWriter out = null;
+        String outFileName;
 
         try {
-            out = new PrintWriter(new File("out.txt"));
+            System.out.println("Enter the name of the file you wish to output to (no file extension)");
+            outFileName = in.next();
+            out = new PrintWriter(new File(outFileName+".txt"));
 
             out.println(vehicle.printInvoice());
 

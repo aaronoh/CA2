@@ -1,6 +1,0 @@
-ID: 8
-Make:Volvo
-Model: XY650
-Service Date: 2015-12-22
-
-Mainteneance cost for this Bus : Euro 750
