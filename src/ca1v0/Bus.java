@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CA1V0;
 
 import java.util.Date;
@@ -16,12 +11,6 @@ public class Bus extends Vehicles {
     private String reg;
     private int garageId;
 
-//    public Bus(String r, String mk, String md, int c, Double engn, Date pd, Date sd, int gid) {
-//        super(mk, md, c, engn, pd, sd);
-//        //constructor used by add bus as the user does not enter the bus id (AI in the database)
-//        this.reg = r;
-//        this.garageId = gid;
-//    }
     public Bus(String r, String mk, String md, int c, Double engn, Date pd, Date sd, int gid) {
         this(-1, r, mk, md, c, engn, pd, sd, gid);
     }
@@ -72,6 +61,6 @@ public class Bus extends Vehicles {
     @Override
     public String printInvoice()
     {
-        return super.displayInvoiceDetails() + "\nMainteneance cost for this Bus : Euro 750";
+        return super.displayInvoiceDetails() + " \nMainteneance cost for this Bus : Euro 750 ";
     }
 }

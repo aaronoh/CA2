@@ -29,7 +29,7 @@ public class CA1V0 {
             System.out.println("-----------------------MENU-------------------------");
             System.out.println("1 - View current Bus list");
             System.out.println("2 - View current Ferry list");
-            System.out.println("3 - View all vehicles");
+            System.out.println("3 - View Vehicles");
             System.out.println("4 - File Input");
             System.out.println("5 - Generate Maintenance Invoices");
             System.out.println("0 - Exit");
@@ -51,7 +51,7 @@ public class CA1V0 {
                     break;
                 }
                 case 3: {
-                    System.out.println("Viewing All...\n");
+                    System.out.println("Viewing Vehicles...\n");
                     System.out.println("Buses:\n");
                     viewBuses(model);
                     System.out.println("Ferries:\n");
@@ -60,7 +60,7 @@ public class CA1V0 {
                 }
 
                 case 4: {
-                    System.out.println("File Input....");
+                    System.out.println("File Input....(File Name: in.txt)");
                     readBusFile(in, model);
                     break;
                 }
@@ -68,7 +68,10 @@ public class CA1V0 {
                 case 5: {
                     try {
                         System.out.println("Generating Maintenance Invoices....");
-
+                        System.out.println("Buses:\n");
+                        viewBuses(model);
+                        System.out.println("Ferries:\n");
+                        viewFerries(model);
                         int id;
                         System.out.println("Enter ID of the required vehicle");
                         id = in.nextInt();
@@ -78,13 +81,13 @@ public class CA1V0 {
 
                         if (id < 999) {
                             b1 = model.findBusByid(id);
-                            generateMInvoices(in,b1, model);
+                            generateMInvoices(in, b1, model);
                             System.out.println("Bus Invoice has been saved to out.txt in your project folder");
                         } else if (id > 999) {
 
                             f1 = model.findFerryByid(id);
 
-                            generateMInvoices(in,f1, model);
+                            generateMInvoices(in, f1, model);
                             System.out.println("Ferry Invoice has been saved to your specicified file in your project folder");
                         }
                     } catch (ArrayIndexOutOfBoundsException ex) {
@@ -152,9 +155,11 @@ public class CA1V0 {
         try {
             purDate = df.parse(pd);
             serviceDate = df.parse(sd);
-        } catch (ParseException ex) {
+        }
+        catch (ParseException ex) {
             Logger.getLogger(CA1V0.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         int gid = in.nextInt();
 
         Bus b = new Bus(r, mk, md, c, engn, purDate, serviceDate, gid);
@@ -231,7 +236,7 @@ public class CA1V0 {
         try {
             System.out.println("Enter the name of the file you wish to output to (no file extension)");
             outFileName = in.next();
-            out = new PrintWriter(new File(outFileName+".txt"));
+            out = new PrintWriter(new File(outFileName + ".txt"));
 
             out.println(vehicle.printInvoice());
 
