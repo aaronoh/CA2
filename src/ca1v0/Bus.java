@@ -57,9 +57,10 @@ public class Bus extends Vehicles {
     public void setgarageId(int garageId) {
         this.garageId = garageId;
     }
-    
+
     @Override
-    public String printInvoice()
+    public String printInvoice() //prints the displayInvoiceDetails method from the super class (vehicles) 
+    // along with some info specific to any Buses printed
     {
         return super.displayInvoiceDetails() + " \nMainteneance cost for this Bus : Euro 750 ";
     }

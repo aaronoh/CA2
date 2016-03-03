@@ -36,7 +36,7 @@ public class TestModel {
         } catch (SQLException ex) {
             Logger.getLogger(TestModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public ArrayList<Bus> getBuses() {
@@ -82,8 +82,6 @@ public class TestModel {
         }
         return b;
     }
-    
-    
 
     public Ferry findFerryByid(int id) {
         Ferry f = null;
@@ -103,7 +101,7 @@ public class TestModel {
         return f;
     }
 
-    
+    //linear search method, not used as findbyid serves the same purpose  
     public static int linearSearch(int id[], int x) {
         boolean found = false;
         int i = 0;

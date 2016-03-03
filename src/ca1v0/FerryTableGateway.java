@@ -34,12 +34,12 @@ public class FerryTableGateway {
         newConnection = connection;
     }
 
-    //Method used to view data from bus table, data is taken from DB and stored in array list
+    //Method used to view data from Ferry table, data is taken from DB and stored in array list
     public ArrayList<Ferry> getFerries() throws SQLException {
         String query;                   // the SQL query to execute
         Statement stmnt;               // the java object used to execute SQL query
         ResultSet rs;                   // the ResultSet representing the result of the SQL query
-        ArrayList<Ferry> ferries;   // the ArrayList containing the Bus object
+        ArrayList<Ferry> ferries;   // the ArrayList containing the Ferry object
 
         int id;
         String make;
@@ -52,7 +52,7 @@ public class FerryTableGateway {
         int crewMembers;
         String name;
 
-        Ferry ferry;                   // a Bus object created from a row in the result of the query
+        Ferry ferry;                   // a Ferry object created from a row in the result of the query
 
         // execute an SQL SELECT statement to get a ResultSet representing the results of the SELECT statement
         query = "SELECT * FROM " + TABLE_NAME;
@@ -72,11 +72,11 @@ public class FerryTableGateway {
             cabins = rs.getInt(COLUMN_CABINS);
             crewMembers = rs.getInt(COLUMN_CREWMEMBERS);
             name = rs.getString(COLUMN_NAME);
-            //create a new bus object using the data pulled from the db
+            //create a new Ferry object using the data pulled from the db
             ferry = new Ferry(id, make, model, capacity, engineSize, purchaseDate, serviceDate, cabins, crewMembers, name);
-            ferries.add(ferry); //add the bus object to the array list
+            ferries.add(ferry); //add the Ferry object to the array list
         }
-        return ferries; //returns arraylist of all buses in table
+        return ferries; //returns arraylist of all Ferryes in table
     }
 
     public boolean insertFerry(Ferry ferries) throws SQLException {
@@ -104,7 +104,7 @@ public class FerryTableGateway {
         // create a PreparedStatement object to execute the query
         try {
             stmnt = newConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);//connect to db
-            stmnt.setString(1, ferries.getMake());//assigns each variable in the bus object to a collumn in the db
+            stmnt.setString(1, ferries.getMake());//assigns each variable in the Ferry object to a collumn in the db
             stmnt.setString(2, ferries.getModel());
             stmnt.setInt(3, ferries.getCapacity());
             stmnt.setDouble(4, ferries.getEngineSize());
@@ -117,7 +117,7 @@ public class FerryTableGateway {
             //  execute the query and make sure only one row was inserted 
             numRowsAffected = stmnt.executeUpdate();
             if (numRowsAffected == 1) {
-                //Retrieve id assigned to that row and create a Bus object 
+                //Retrieve id assigned to that row and create a Ferry object 
                 ResultSet keys = stmnt.getGeneratedKeys();
                 keys.next();
 

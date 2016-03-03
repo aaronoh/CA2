@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CA1V0;
 
 import java.sql.Connection;
@@ -15,9 +10,10 @@ import java.sql.SQLException;
  */
 public class DBConnection {
 
-    private static final String USERNAME = "N00143888";//the username and password used in phpmyadmin
+    private static final String USERNAME = "N00143888";//the username and password used in phpmyadmin to access the database
     private static final String PASSWORD = "N00143888";
-    private static final String URL = "jdbc:mysql://localhost/N00143888playground";//the location of the database on the server 
+    //private static final String URL = "jdbc:mysql://localhost/N00143888playground";//the location of the database on my laptop (localhost)
+    private static final String URL = "jdbc:mysql://daneel/N00143888playground";//the location of the database on the database serever in iadt (daneel)
 
     private static DBConnection instance = null;
     private Connection dbConnection = null;

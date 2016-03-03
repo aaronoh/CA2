@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CA1V0;
 
 import java.util.Date;
@@ -39,7 +34,7 @@ public abstract class Vehicles implements Invoices {
     }
 
     public void display() {
-
+        //displays superclass variables, formatted into 'table' form using printf and spacing (%10s %13s etc.)
         System.out.printf("%10s %13s %11s %9s %13s %17s %16s ",
                 this.id,
                 this.make,
@@ -49,14 +44,13 @@ public abstract class Vehicles implements Invoices {
                 this.purchaseDate,
                 this.serviceDate);
     }
-    
+
     public String displayInvoiceDetails() {
-        
-        String result = " ID: " + this.id + " \n " + " Make: " + this.make + " \n  " + " Model: " + this.model + "  \n  " + " Service Date: " + this.serviceDate + "  \n "  ;
+        //super display method for file output, outputs the info needed to dentify which vehicle is being invoiced
+        String result = " ID: " + this.id + " \n " + " Make: " + this.make + " \n  " + " Model: " + this.model + "  \n  " + " Service Date: " + this.serviceDate + "  \n ";
 
         return result;
     }
-    
 
     /**
      * @return the id
