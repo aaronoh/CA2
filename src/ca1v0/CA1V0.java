@@ -3,8 +3,6 @@ package CA1V0;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import static java.lang.Integer.parseInt;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static java.lang.Integer.parseInt;
+
 
 public class CA1V0 {
 
@@ -254,6 +252,7 @@ public class CA1V0 {
             System.out.println("Enter the name of the file you wish to output to (no file extension)");
             outFileName = in.next();
             out = new PrintWriter(new File(outFileName + ".txt"));
+            
             //write the printInvoice interface to the file
             out.println(vehicle.printInvoice());
 
